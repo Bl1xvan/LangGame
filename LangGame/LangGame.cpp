@@ -2,62 +2,52 @@
 //
 
 #include <iostream>
-#include <Windows.h>
+#include <windows.h>
 #include <conio.h>
 using namespace std;
 
 int points = 0;
-char theanswer;
 char level;
 bool game_on = true;
 enum mode {main_menu, one, two};
 mode current = main_menu;
 
 
+void levelLayout(string answ, char tar) {
+	cout << "Welcome to level one! The correct answer is " << answ << endl;
 
+	int pts = 0;
+	char target = tar;
+	bool correct = true;
+
+	do {
+		char ltr;
+			ltr = _getch();
+			correct = ltr == target;
+			if (correct == true) {
+				pts++;
+				cout << ltr << " " << pts << endl;
+			}
+
+	} while (pts < 4 && correct == true);
+
+	current = main_menu;
+
+}
 void levelOne() {
 	if (current == one) {
 		system("cls");
-			cout << "Welcome to level one! The correct answer is w" << endl;
-			int pts = 0;
-			char target = 'w';
-			bool correct = true;
-			
-			do {
-				char ltr;
-				ltr = _getch();
-				correct = ltr == target;
-				if (correct == true) {
-					pts++;
-					cout << ltr << " " << pts << endl;
-				}
-			} while (pts < 4 && correct == true);
-			current = main_menu;
-
+		levelLayout("w", 'w');
 	}
 }
 
 void levelTwo() {
 	if (current == two) {
 		system("cls");
-			cout << "Welcome to level two. The correct answer is a" << endl;
-			int pts = 0;
-			char target = 'a';
-			bool correct = true;
-
-				do {
-					char ltr;
-					ltr = _getch();
-					correct = ltr == target;
-					if (correct == true) {
-						pts++;
-						cout << ltr << " " << pts << endl;
-					}
-				} while (pts < 4 && correct == true);
-				current = main_menu;
-		
+		levelLayout("a", 'a');
 	}
 }
+
 
 void chooseLvl(char chosen) {
 	
