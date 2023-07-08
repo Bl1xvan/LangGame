@@ -2,10 +2,96 @@
 //
 
 #include <iostream>
+#include <Windows.h>
+#include <conio.h>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int points = 0;
+char theanswer;
+char level;
+bool game_on = true;
+enum mode {main_menu, one, two};
+mode current = main_menu;
+
+
+
+void levelOne() {
+	if (current == one) {
+		system("cls");
+			cout << "Welcome to level one! The correct answer is w" << endl;
+			int pts = 0;
+			char target = 'w';
+			bool correct = true;
+			
+			do {
+				char ltr;
+				ltr = _getch();
+				correct = ltr == target;
+				if (correct == true) {
+					pts++;
+					cout << ltr << " " << pts << endl;
+				}
+			} while (pts < 4 && correct == true);
+			current = main_menu;
+
+	}
+}
+
+void levelTwo() {
+	if (current == two) {
+		system("cls");
+			cout << "Welcome to level two. The correct answer is a" << endl;
+			int pts = 0;
+			char target = 'a';
+			bool correct = true;
+
+				do {
+					char ltr;
+					ltr = _getch();
+					correct = ltr == target;
+					if (correct == true) {
+						pts++;
+						cout << ltr << " " << pts << endl;
+					}
+				} while (pts < 4 && correct == true);
+				current = main_menu;
+		
+	}
+}
+
+void chooseLvl(char chosen) {
+	
+	if (chosen == 's') {
+		current = one;
+	}
+	else if (chosen == 'd') {
+		current = two;
+	}
+}
+
+void menu() {
+	if (current == main_menu) {
+		system("cls");
+		cout << "Choose a level" << endl;
+		cout << "s will bring you to one " << endl;
+		cout << "d will bring you to two" << endl;
+
+		level = _getch();
+
+		chooseLvl(level);
+	}
+	
+}
+
+
+int main(){
+
+	while (game_on) {
+		menu();
+		levelOne();
+		levelTwo();
+	}
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
